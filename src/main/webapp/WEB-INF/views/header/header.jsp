@@ -16,6 +16,11 @@
         <li class="nav-item">
          	<a class="nav-link active" aria-current="page"href="/board/create">글쓰기페이지</a>
         </li>
+        <li class="nav-item">
+         	<a class="nav-link active" aria-current="page"href="/board/list">리스트페이지</a>
+        </li>
+        
+        
          <li class="nav-item">
          	<a class="nav-link"href="/">戻る</a>
         </li>

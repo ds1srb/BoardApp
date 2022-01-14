@@ -35,11 +35,15 @@
 	
 	
 	<select id="findAll" resultType="com.board.app.dto.BoardDto">
-		SELECT * from board
+		SELECT * from board ORDER by id DESC
 		
 	</select>
 	
+	<select id="listboard" parameterType="int" resultType="com.board.app.dto.BoardDto">
+		SELECT * from board where id =#{id}
+	</select>
 	
+
 	
 	
 	

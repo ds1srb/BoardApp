@@ -16,13 +16,6 @@ public class BoardServiceImpl implements BoardService {
 	
 
 	@Override
-	public void insertboard(BoardDto board) {
-		
-		dao.insertboard(board);
-	}
-
-
-	@Override
 	public BoardDto listboard(int id) {
 		BoardDto applicantIn= dao.listboard(id);
 		return applicantIn;
@@ -33,6 +26,12 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardDto> findAll() {
 		List<BoardDto> list = dao.findAll();
 		return list;
+	}
+
+	@Override
+	public void insertboard(BoardDto board) {
+		
+		dao.insertboard(board);
 	}
 
 }

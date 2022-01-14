@@ -1,5 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <meta charset="utf-8">
+
+<script>
+
+$(document).ready(function(){
+	$("#submit").click(function(){
+		if($("#board_name").val().length==0){alert("이름을 입력하세요"); $("#board_name").focus(); return false;}
+		if($("#board_passwd").val().length==0){alert("비밀번호를 입력하세요"); $("#board_passwd").focus(); return false;}
+		if($("#board_Title").val().length==0){alert("제목을 입력하세요"); $("#board_Title").focus(); return false;}
+		if($("#board_Contents").val().length==0){alert("내용을 입력하세요"); $("#board_Contents").focus(); return false;}
+	});
+
+
+
+});
+
+</script>
+
+
 <%
 	String userID=null;
 	if(session.getAttribute("userID") != null) {
@@ -7,6 +26,11 @@
 	}
 
 %>
+<script>
+function btn() {
+	alert('등록이 완료되었습니다.');
+}
+</script>
 <h1 class="text-center fs-1" style="margin-top: 20px; margin-bottom:20px;">작성페이지</h1>
 	<div class="arearea">
 		<form action="${from }" method="post">
@@ -14,30 +38,32 @@
 					<tr>
 						<td class="text-center" width="10%"><strong>名前</strong></td>
 						<td width="40%">
-							<input type=text name=board_name size=20>
+							<input type=text name=board_name id=board_name placeholder="이름을 입력해 주세요" size=20>
 						</td>
 						<td class="text-center" width="10%"><strong>Password</strong></td>
 						<td width="40%">
-							<input type=password name=board_passwd size=20>
+							<input type=password name=board_passwd id=board_passwd placeholder="비밀번호를 입력해 주세요" size=20>
 						</td>
 					</tr>
 					<tr>
 						<td class="text-center"><strong>제&nbsp;&nbsp;목</strong></td>
-						<td colspan="3"><input type="text" id="board_Title" name="board_title" class="col-sm-12 col-form-label"></td>
+						<td colspan="3"><input type="text" id="board_Title" name="board_title" placeholder="제목을 입력해 주세요" class="col-sm-12 col-form-label"></td>
 					</tr>
 					<tr>
 						<td class="text-center align-middle"><strong>내&nbsp;&nbsp;용</strong></td>
-						<td colspan="3"><textarea id="board_Contents" name="board_contents" rows="7" class="col-sm-12 col-form-label"></textarea></td>
+						<td colspan="3"><textarea id="board_Contents" name="board_contents" rows="7" placeholder="내용을 입력해 주세요" class="col-sm-12 col-form-label"></textarea></td>
 					</tr>
 					<tr>
 						<td colspan=4 align="center" >
 							<input type="button" onclick="history.back()" style="width:100pt;" class="btn btn-warning btn-lg" value="戻る"> &emsp;&emsp;
-							<input type="submit" style="width:100pt;" class="btn btn-primary btn-lg" value="등록">
+							<input type="submit" id="submit" style="width:100pt;" class="btn btn-primary btn-lg" value="등록">
 						</td>
 					</tr>
 					</table>
-					
+	
 				</form>
+				
+				
 		
 	</div>
 	

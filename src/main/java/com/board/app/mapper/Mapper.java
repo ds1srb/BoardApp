@@ -12,9 +12,12 @@ public interface Mapper {
 	
 	public String getTime();
 	
-	public void insertboard(BoardDto board); 
+	
 	
 	BoardDto listboard(int id);
+	
+	
+	public void insertboard(BoardDto board); 
 
 	public List<BoardDto> findAll();
 }

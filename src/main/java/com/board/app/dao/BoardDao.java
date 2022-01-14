@@ -17,9 +17,7 @@ public class BoardDao {
 	@Autowired
 	Mapper mapper;
 	
-	public void insertboard(BoardDto board) {
-		mapper.insertboard(board);
-	} 
+	
 	
 	public BoardDto listboard(int id) {
 		BoardDto applicantIn = mapper.listboard(id);
@@ -31,4 +29,12 @@ public class BoardDao {
 		List<BoardDto> list = mapper.findAll();
 		return list;
 	}
+	
+	
+	public void insertboard(BoardDto board) {
+		mapper.insertboard(board);
+	} 
+	
+
+	
 }

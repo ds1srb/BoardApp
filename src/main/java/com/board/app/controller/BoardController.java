@@ -26,16 +26,29 @@ public class BoardController {
 	 
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
+	@RequestMapping(value = "/board/detail", method = RequestMethod.GET)
+	public String detail(Model model, int id) {
+		
+		BoardDto applicantIn = service.listboard(id);
+		model.addAttribute("applicantIn", applicantIn);
+		model.addAttribute("id", id);
+		//model.addAttribute("form", "/board/detail");
+		
+		logger.info("상세페이지");
+		return "NB001D01";
+	}	
+	
 	
 	@RequestMapping(value = "/board/list", method = RequestMethod.GET)
-	public String receipt(Model model, BoardDto dto) {
+	public String receipt(Model model) {
 		List<BoardDto> list = service.findAll();		
-		model.addAttribute("dto", dto);
+		//model.addAttribute("dto", dto);
 		model.addAttribute("test", list);
 		model.addAttribute("form", "/board");
 		//BoardDto dto = new BoardDto();
 		logger.info("목록이다");
 		return "NB001L01";
+		
 	}
 	
 	
@@ -67,30 +80,15 @@ public class BoardController {
 			
 			String board_Deleteflg = request.getParameter("board_deleteflg");
 			dto.setDeleteflg(board_Deleteflg);
-
-		
-			String board_Createdat = request.getParameter("board_createdat");
-			SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-		 
-			String board_Updatedat = request.getParameter("board_updatedat");
-		 
+			
 			
 			service.insertboard(dto);
 			logger.info("작성한다");
-			return "redirect:/board/create";
+			return "redirect:/board/list";
 	}
 			
 			
 			
-	@RequestMapping(value = "/board/detail", method = RequestMethod.GET)
-	public String detail(Model model) {
-		
-		model.addAttribute("form", "/board/detail");
-		BoardDto dto = new BoardDto();
-		logger.info("상세페이지");
-		return "NB001D01";
-	}
 	
-
 
 }
