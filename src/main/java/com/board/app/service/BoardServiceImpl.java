@@ -7,12 +7,16 @@ import org.springframework.stereotype.Service;
 
 import com.board.app.dao.BoardDao;
 import com.board.app.dto.BoardDto;
+import com.board.app.dto.Criteria;
+import com.board.app.mapper.Mapper;
 
 @Service
 public class BoardServiceImpl implements BoardService {
 
 	@Autowired
 	BoardDao dao;
+	@Autowired
+	Mapper mapper;
 	
 
 	@Override
@@ -32,6 +36,12 @@ public class BoardServiceImpl implements BoardService {
 	public void insertboard(BoardDto board) {
 		
 		dao.insertboard(board);
+	}
+
+
+	@Override
+	public List<BoardDto> getList(Criteria cri) {
+		return mapper.getListWithPaging(cri);
 	}
 
 }

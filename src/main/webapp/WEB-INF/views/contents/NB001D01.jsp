@@ -6,7 +6,7 @@
 <div class="work-area">
 
 
-		<table class="table table-success table-striped" style="text-align: center; border: 1px solid #dddddd" >
+		<table class="table table-dark table-striped" style="text-align: center; border: 1px solid #dddddd" >
 			<thead>
 				<tr>
 					

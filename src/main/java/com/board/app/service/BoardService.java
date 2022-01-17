@@ -3,6 +3,7 @@ package com.board.app.service;
 import java.util.List;
 
 import com.board.app.dto.BoardDto;
+import com.board.app.dto.Criteria;
 
 public interface BoardService {
 
@@ -14,7 +15,8 @@ public interface BoardService {
 	
 	
 	public List<BoardDto> findAll();
-
+	
+	public List<BoardDto> getList(Criteria cri);
 
 	
 	

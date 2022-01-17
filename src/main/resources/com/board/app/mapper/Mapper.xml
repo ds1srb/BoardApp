@@ -43,6 +43,17 @@
 		SELECT * from board where id =#{id}
 	</select>
 	
+	<select id="getListWithPaging" resultType="com.board.app.dto.BoardDto">
+		<![CDATA[
+			select * from 
+			(
+				select rownum rn, id, title, contents, name, passwd, islock, deleteflg, createdat, updatedat
+					from board where rownum <= 20
+			)
+				where rn > 10
+			]]>
+	</select>
+	
 
 	
 	

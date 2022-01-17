@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.board.app.dto.BoardDto;
+import com.board.app.dto.Criteria;
+import com.board.app.dto.PageDTO;
 import com.board.app.service.BoardService;
 
 
@@ -40,12 +42,13 @@ public class BoardController {
 	
 	
 	@RequestMapping(value = "/board/list", method = RequestMethod.GET)
-	public String receipt(Model model) {
+	public String receipt(Model model, Criteria cri) {
 		List<BoardDto> list = service.findAll();		
-		//model.addAttribute("dto", dto);
 		model.addAttribute("test", list);
 		model.addAttribute("form", "/board");
-		//BoardDto dto = new BoardDto();
+		logger.info("list: " + cri);
+		model.addAttribute("list", service.getList(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, 123));
 		logger.info("목록이다");
 		return "NB001L01";
 		

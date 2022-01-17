@@ -5,6 +5,21 @@
 <div class="work-area">
 ${dto}
 
+<script type="text/javascript">
+	$(document).ready(function() {
+		var actionForm = $("#actionForm");
+		$(".paginate_button a").on("click", function(e) {
+			e.preventDefault();
+			console.log('click');
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+		});
+	
+	});
+
+</script>
+
+
 <style>
 	th {
 		text-align : center;
@@ -15,11 +30,13 @@ ${dto}
 </style>
 
 
+
+
 	<h1 class="text-center fs-1" style="margin-bottom:30px;">목록페이지</h1>
 		<form name="search" action="board" method="GET">
 		<button type ="button" class="btn btn-primary" onclick="location.href='/board/create'"> 글쓰기 </button>
 			<div style="margin-top:20px; margin-bottom:10px; text-align:center;">
-				<table class="table table-striped">
+				<table class="table table-dark table-striped">
 					<tr>
 						<th width="10%"> 番号 </th>
 						<th width="60%"> 제목 </th>
@@ -63,39 +80,40 @@ ${dto}
 			</form>
 		</div>
 	</div>
+	
+	
+	
 <!-- 페이징 소스 -->
 	<div id="pagination-box" style=" margin-top:20px; margin-bottom:100px;">
 		<nav style="vertical-align: middle;" aria-label="Page navigation example">
 			<ul class="pagination justify-content-center">
-				<c:if test="${pageNavi.prev}">
-					<li class="page-item" onClick="javascript:page(${pageNavi.startPage-1});">
-						<a class="page-link" href="#" tabindex="-1">&lt;</a>
+				<c:if test="${pageMaker.prev}">
+					<li class="paginate_button previous"> <a href="${pageMaker.starPage -1 }">Previous</a>
 					</li>
 				</c:if>
-				<c:forEach begin="${pageNavi.startPage }" end="${pageNavi.endPage }"
-					var="page">
-					<li class="page-item ${pageNavi.paging.pageNo eq page ?'active':''}" onClick="page(${page })">
-						<a class="page-link" href="#">${page }</a>
+				
+				<c:forEach var="num" begin="${pageMaker.startPage }"
+					end="${pageMaker.endPage }">
+					<li class="paginate_button ${pageMaker.cri.pageNum == num ? "active":"" }">
+					<a href="${num}">${num}</a>
 					</li>
 				</c:forEach>
-				<c:if test="${pageNavi.next}">
-					<li class="page-item" onClick="page(${pageNavi.endPage+1});"><a class="page-link" href="#">&gt;</a></li>
+				
+				<c:if test="${pageMaker.next}">
+					<li class="paginate_button next">
+						<a href="${pageMaker.endPage + 1 }">Next</a>
+					</li>
 				</c:if>
 			</ul>
 		</nav>
 	</div>
 	<!-- 페이징 끝 -->
-	<form method=get action=/admin/receipt name=listForm>
-		<!-- 상세보기 검색 유지용 -->
-		${pageNavi.paging.type } 
-		<input type=hidden name=pageNo value=${pageNavi.paging.pageNo }>
-		<input type="hidden" name="search_codeA" value="${search_codeA}">
-		<input type="hidden" name="search_codeB" value="${search_codeB}">
-		<input type="hidden" name="search_codeC" value="${search_codeC}">
-			<input type="hidden" name="search_name" value="${search_name}">
-		<!-- 상세보기 검색 유지용 끝 -->
-	</form>
-		
+	
+	<form id='actionForm' action="/board/list" method='get'>
+		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+		<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+		</form>
+	
 	
 	
 </div>
