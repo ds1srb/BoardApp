@@ -8,7 +8,7 @@
 $(document).ready(function(){
 	$("#submit").on("click",function(event){
 		if($("#board_name").val().length==0){alert("이름을 입력하세요"); $("#board_name").focus(); return false;}
-		/* if($("#board_passwd").val().length==0){alert("비밀번호를 입력하세요"); $("#board_passwd").focus(); return false;} */
+		if($("#board_passwd").val().length==0){alert("비밀번호를 입력하세요"); $("#board_passwd").focus(); return false;}
 		if($("#board_Title").val().length==0){alert("제목을 입력하세요"); $("#board_Title").focus(); return false;}
 		if($("#summernote").val().length==0){alert("내용을 입력하세요"); $("#summernote").focus(); return false;}
 		
@@ -48,29 +48,29 @@ function btn() {
 	alert('등록이 완료되었습니다.');
 }
 </script>
-<h1 class="text-center fs-1" style="margin-top: 20px; margin-bottom:20px;">작성페이지</h1>
+<h1 class="text-center fs-1" style="margin-top: 20px; margin-bottom:20px;">수정페이지</h1>
 	<div class="arearea">
 		<form action="${from }" method="post">	
-			<input type=hidden name=no value="${no}">
+			<input type=hidden name=id value="${id}">
 				<table class="table table-bordered">
 					<tr>
 						<td class="text-center" width="10%"><strong>名前</strong></td>
 						<td width="40%">
-							<input type=text name=board_name id=board_name placeholder="이름을 입력해 주세요" size=20>
+							<input type=text name=board_name size=20 value="${update.name}">
 						</td>
 						<td class="text-center" width="10%"><strong>Password</strong></td>
 						<td width="40%">
-							<input type=password name=board_passwd id=board_passwd placeholder="비밀번호를 입력해 주세요" size=20>
+							<input type=password name=board_passwd size=20 value="${update.passwd}">
 						</td>
 					</tr>
 					<tr>
 						<td class="text-center"><strong>제&nbsp;&nbsp;목</strong></td>
-						<td colspan="3"><input type="text" id="board_Title" name="board_title" placeholder="제목을 입력해 주세요" class="col-sm-12 col-form-label"></td>
+						<td colspan="3"><input type="text" name="board_title" value="${update.title}" class="col-sm-12 col-form-label"></td>
 					</tr>
 					<tr>
 					
 						<td class="text-center align-middle"><strong>내&nbsp;&nbsp;용</strong></td>
-						<td colspan="3"><textarea id="summernote" name="board_contents"></textarea></td>
+						<td colspan="3"><textarea id="summernote" name="board_contents">${update.contents}</textarea></td>
 					</tr>
 					<tr>
 						<td colspan=4 align="center" >

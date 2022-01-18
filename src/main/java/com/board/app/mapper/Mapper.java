@@ -23,4 +23,12 @@ public interface Mapper {
 	public List<BoardDto> findAll();
 	
 	public List<BoardDto> getListWithPaging(Criteria cri);
+	
+	public int getTotalCount(Criteria cri);
+
+	BoardDto getReceipt(int id);
+	
+	int updateReceipt(BoardDto updateReceipt);
+	
+	
 }

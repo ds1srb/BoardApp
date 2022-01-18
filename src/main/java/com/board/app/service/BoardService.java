@@ -18,6 +18,13 @@ public interface BoardService {
 	
 	public List<BoardDto> getList(Criteria cri);
 
+	public int getTotal(Criteria cri);
+
+
+	public BoardDto getReceipt(int id);
+	
+	int updateReceipt(BoardDto updateReceipt);
+
 	
 	
 

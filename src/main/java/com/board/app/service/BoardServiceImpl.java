@@ -44,4 +44,24 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.getListWithPaging(cri);
 	}
 
+
+	@Override
+	public int getTotal(Criteria cri) {
+		return mapper.getTotalCount(cri);
+	}
+
+
+	@Override
+	public BoardDto getReceipt(int id) {
+		return dao.getReceipt(id);
+	}
+
+
+	@Override
+	public int updateReceipt(BoardDto updateReceipt) {
+		return dao.updateReceipt(updateReceipt);
+	}
+
+
+
 }

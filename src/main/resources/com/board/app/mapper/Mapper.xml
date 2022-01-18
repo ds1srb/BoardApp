@@ -14,7 +14,6 @@
 		name,
 		passwd,
 		islock,
-		deleteflg,
 		createdat,
 		updatedat
 		)
@@ -26,8 +25,7 @@
 		#{contents},
 		#{name},
 		#{passwd},
-		'0',
-		'0',
+		#{islock},
 		sysdate,
 		sysdate
 		)
@@ -43,18 +41,38 @@
 		SELECT * from board where id =#{id}
 	</select>
 	
-	<select id="getListWithPaging" resultType="com.board.app.dto.BoardDto">
+	<select id="getListWithPaging" parameterType="com.board.app.dto.Criteria" resultType="com.board.app.dto.BoardDto">
 		<![CDATA[
 			select * from 
 			(
 				select rownum rn, id, title, contents, name, passwd, islock, deleteflg, createdat, updatedat
-					from board where rownum <= 20
+					from board 
+					where rownum <= #{pageNum} * #{amount}
 			)
-				where rn > 10
+				where rn > (#{pageNum} - 1) * #{amount}
 			]]>
 	</select>
 	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from board where id > 0
+	</select>
 
+	<select id="getReceipt" resultType="com.board.app.dto.BoardDto">
+
+		select * from board where id = #{id}
+		
+		</select>
+
+<update id="updateReceipt">
+	update board
+	set title= #{title},
+		contents=#{contents},
+		name=#{name},
+		passwd=#{passwd},
+		updatedat=sysdate
+		where id=#{id}
+		
+</update>
 	
 	
 	

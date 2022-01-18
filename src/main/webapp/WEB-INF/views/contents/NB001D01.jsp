@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <div class="work-area">
-
+${id}
 
 		<table class="table table-dark table-striped" style="text-align: center; border: 1px solid #dddddd" >
 			<thead>
@@ -34,7 +34,7 @@
 		</table>
 	<a href="list" class="btn btn-danger">목록</a>
 	
-	
+	<a href="/board/update?id=${id}" role="button" class="btn btn-warning">수정</a>
 	
 	
 		

@@ -17,6 +17,9 @@ public class BoardDto {
 	private Date createdat;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedat;
+	
+	
+	
 	public int getId() {
 		return id;
 	}

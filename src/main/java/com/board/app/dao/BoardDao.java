@@ -33,8 +33,18 @@ public class BoardDao {
 	
 	public void insertboard(BoardDto board) {
 		mapper.insertboard(board);
+	}
+
+	public BoardDto getReceipt(int id) {
+		BoardDto dto = mapper.getReceipt(id);
+		return dto;
 	} 
+	public int updateReceipt(BoardDto updateReceipt) {
 	
+		int result = mapper.updateReceipt(updateReceipt);
+		return result;
+		
+	}
 
 	
 }
