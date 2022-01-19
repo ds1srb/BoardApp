@@ -2,6 +2,7 @@ package com.board.app.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.board.app.dto.BoardDto;
@@ -28,7 +29,11 @@ public interface Mapper {
 
 	BoardDto getReceipt(int id);
 	
+	
+	
 	int updateReceipt(BoardDto updateReceipt);
+	
+	public List<BoardDto> getPasswd(@Param ("id") int id,@Param ("passwd") String passwd);
 	
 	
 }

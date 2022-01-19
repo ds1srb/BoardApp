@@ -46,5 +46,10 @@ public class BoardDao {
 		
 	}
 
+	public List<BoardDto> getPasswd(int id, String passwd) {
+		List<BoardDto> list = mapper.getPasswd(id, passwd);
+		return list;
+	}
+
 	
 }

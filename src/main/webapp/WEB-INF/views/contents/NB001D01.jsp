@@ -4,8 +4,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <div class="work-area">
-${id}
 
+<script type="text/javascript">
+
+	window.onpageshow = function(event) {
+    	if (event.persisted) {
+        	document.location.reload();
+    	}
+	}
+</script>
+
+${id}
+${applicantIn.islock}
 		<table class="table table-dark table-striped" style="text-align: center; border: 1px solid #dddddd" >
 			<thead>
 				<tr>

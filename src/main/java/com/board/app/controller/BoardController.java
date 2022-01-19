@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.board.app.dto.BoardDto;
 import com.board.app.dto.Criteria;
@@ -24,9 +25,41 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService service;
-	 
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
+	@RequestMapping(value = "/board/Password", method = RequestMethod.GET)
+	public String listpasswd(Model model,@RequestParam int id, @RequestParam(required=false) String Warning) {
+		BoardDto applicantIn = service.listboard(id);
+		model.addAttribute("applicantIn", applicantIn);
+		model.addAttribute("id", id);
+		model.addAttribute("Warning", Warning);
+		logger.info("비밀번호입력해주세요");
+		return "Password";
+	}
+	
+	@RequestMapping(value = "/board/Password", method = RequestMethod.POST)
+	public String listpasswd1(HttpServletRequest request, Model model, @RequestParam String passwd, @RequestParam int id) throws ParseException {
+		System.out.println("pass================="+passwd);
+		System.out.println("id================="+id);
+		service.getPasswd(id, passwd);
+		System.out.println("service==============="+service.getPasswd(id, passwd).size());
+		String str="";
+		if(service.getPasswd(id, passwd).size() >0) {
+			str = "redirect:/board/detail?id=" + id;
+		}else {
+			String WW = "틀렸어요";
+			model.addAttribute("Warning", WW );
+			str = "redirect:/board/Password?id=" + id;
+		}
+		System.out.println(str);
+		
+		/*
+		 * String board_Passwd = request.getParameter("board_passwd");
+		 * dto.setPasswd(board_Passwd);
+		 */
+		return str;
+	}
+	
 	
 	@RequestMapping(value = "/board/update", method = RequestMethod.GET)
 	public String receiptupdate(int id, Model model) {
@@ -126,11 +159,13 @@ public class BoardController {
 			System.out.println(board_Passwd);
 			dto.setPasswd(board_Passwd);
 			
+			
 			if (board_Passwd == null||board_Passwd.trim().length()==0) {
 				dto.setIslock("0");	
 			} else {
 				dto.setIslock("1");
 			}
+			
 			
 			String board_Deleteflg = request.getParameter("board_deleteflg");
 			dto.setDeleteflg(board_Deleteflg);

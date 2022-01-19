@@ -14,7 +14,7 @@
 	<link href="/resources/lib/bootstrap-4.4.1-dist/css/bootstrap.css" rel="stylesheet"/>
 	<link href="/resources/css/common.css" rel="stylesheet"/>
 
-	 <link rel="shortcut icon" href="https://www.ur-net.go.jp/commoncms/img/favicon.ico"/>
+	 <link rel="shortcut icon" href="https://github.githubassets.com/favicons/favicon.png"/>
 
 
 </head>

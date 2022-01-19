@@ -5,21 +5,31 @@
 <div class="work-area">
 	${dto}
 
-	<script type="text/javascript">
-		$(document).ready(
-				function() {
-					var actionForm = $("#actionForm");
-					$(".paginate_button a").on(
-							"click",
-							function(e) {
-								e.preventDefault();
-								console.log('click');
-								actionForm.find("input[name='pageNum']").val(
-										$(this).attr("href"));
-								actionForm.submit();
-							});
+<script type="text/javascript">
+	$(document).ready(
+		function() {
+			var actionForm = $("#actionForm");
+			$(".paginate_button a").on(
+					"click",
+					function(e) {
+						e.preventDefault();
+						console.log('click');
+						actionForm.find("input[name='pageNum']").val(
+								$(this).attr("href"));
+						actionForm.submit();
+					});
 
-				});
+		});
+		
+		function chkIsLock(isLock, id, e) {
+		
+			if (isLock == 1) {
+				location.href="/board/Password?id="+id;
+			} else {
+				location.href="/board/detail?id=" + id;
+			
+			}
+		}
 	</script>
 
 
@@ -44,14 +54,17 @@ th {
 			<table class="table table-dark table-striped">
 				<tr>
 					<th width="10%">番号</th>
-					<th width="60%">제목</th>
-					<th width="10%">글쓴이</th>
-					<th width="20%">등록일</th>
+					<th width="60%">タイトル</th>
+					<th width="10%">ユーザー</th>
+					<th width="20%">登録日</th>
 				</tr>
 				<c:forEach var="abc" items="${test}">
 					<tr>
 						<td align="center">${abc.id }</td>
-						<td align="center"><a href="/board/detail?id=${abc.id }">${abc.title }</a></td>
+						<td align="center">
+						<input type="hidden" class="title" name="title" value="${abc.passwd }">
+						<c:if test="${abc.islock == 1}">비밀글</c:if>
+							<a href="#" onclick="chkIsLock(${abc.islock}, ${abc.id}, this)">${abc.title }</a></td>
 						<td align="center">${abc.name }</td>
 						<td><fmt:formatDate value="${abc.createdat }"
 								pattern="yyyy-MM-dd kk:mm"></fmt:formatDate></td>
@@ -61,6 +74,7 @@ th {
 		</div>
 	</form>
 
+<!-- 검색기능  -->
 	<div class="container">
 		<div class="row" style="text-align: center">
 			<form method="post" name="search" action="board">

@@ -24,6 +24,8 @@ public interface BoardService {
 	public BoardDto getReceipt(int id);
 	
 	int updateReceipt(BoardDto updateReceipt);
+	
+	public List<BoardDto> getPasswd(int id, String passwd);
 
 	
 	

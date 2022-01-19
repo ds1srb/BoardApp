@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
     <meta charset="utf-8">
 <link rel="stylesheet" href="/resources/lib/summernote-0.8.18-dist/summernote-lite.css">
 <script src="/resources/lib/summernote-0.8.18-dist/summernote-lite.js"></script>
@@ -7,10 +8,6 @@
 
 $(document).ready(function(){
 	$("#submit").on("click",function(event){
-		if($("#board_name").val().length==0){alert("이름을 입력하세요"); $("#board_name").focus(); return false;}
-		if($("#board_passwd").val().length==0){alert("비밀번호를 입력하세요"); $("#board_passwd").focus(); return false;}
-		if($("#board_Title").val().length==0){alert("제목을 입력하세요"); $("#board_Title").focus(); return false;}
-		if($("#summernote").val().length==0){alert("내용을 입력하세요"); $("#summernote").focus(); return false;}
 		
 		alert("등록이완료되었다.");
 		
@@ -64,8 +61,10 @@ function btn() {
 						</td>
 					</tr>
 					<tr>
+						
 						<td class="text-center"><strong>제&nbsp;&nbsp;목</strong></td>
 						<td colspan="3"><input type="text" name="board_title" value="${update.title}" class="col-sm-12 col-form-label"></td>
+						
 					</tr>
 					<tr>
 					

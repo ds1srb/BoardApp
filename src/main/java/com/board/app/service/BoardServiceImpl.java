@@ -63,5 +63,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 
+	@Override
+	public List<BoardDto> getPasswd(int id, String passwd) {
+		// TODO Auto-generated method stub
+		List<BoardDto> list = dao.getPasswd(id, passwd);
+		return list;
+	}
+
+
 
 }

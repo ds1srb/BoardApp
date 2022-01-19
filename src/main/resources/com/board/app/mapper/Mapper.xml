@@ -38,7 +38,7 @@
 	</select>
 	
 	<select id="listboard" parameterType="int" resultType="com.board.app.dto.BoardDto">
-		SELECT * from board where id =#{id}
+		SELECT * from board where id =#{id}  ORDER by id DESC
 	</select>
 	
 	<select id="getListWithPaging" parameterType="com.board.app.dto.Criteria" resultType="com.board.app.dto.BoardDto">
@@ -50,16 +50,17 @@
 					where rownum <= #{pageNum} * #{amount}
 			)
 				where rn > (#{pageNum} - 1) * #{amount}
-			]]>
+				order by id DESC
+			]]> 
 	</select>
 	
 	<select id="getTotalCount" resultType="int">
-		select count(*) from board where id > 0
+		select count(*) from board where id > 0 
 	</select>
 
 	<select id="getReceipt" resultType="com.board.app.dto.BoardDto">
 
-		select * from board where id = #{id}
+		select * from board where id = #{id} ORDER by id DESC
 		
 		</select>
 
@@ -74,6 +75,7 @@
 		
 </update>
 	
-	
-	
+	<select id="getPasswd" resultType="com.board.app.dto.BoardDto">
+		select * from board where id=#{id} and passwd=#{passwd} ORDER by id DESC
+	</select>
 </mapper>
