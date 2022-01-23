@@ -49,6 +49,8 @@ function btn() {
 	<div class="arearea">
 		<form action="${from }" method="post">	
 			<input type=hidden name=id value="${id}">
+			<input type='hidden' name='pageNum' value='${cri.pageNum }'>
+			<input type='hidden' name='amount' value='${cri.amount }'>
 				<table class="table table-bordered">
 					<tr>
 						<td class="text-center" width="10%"><strong>名前</strong></td>

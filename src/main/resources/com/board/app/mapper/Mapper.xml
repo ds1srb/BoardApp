@@ -41,13 +41,37 @@
 		SELECT * from board where id =#{id}  ORDER by id DESC
 	</select>
 	
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+				<foreach item='type' collection="typeArr">
+					<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+
+						<when test="type == 'N'.toString()">
+							name like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+					</trim>
+				</foreach>
+			</trim>
+			
+	</sql>
+	
+	
 	<select id="getListWithPaging" parameterType="com.board.app.dto.Criteria" resultType="com.board.app.dto.BoardDto">
 		<![CDATA[
 			select * from 
 			(
 				select rownum rn, id, title, contents, name, passwd, islock, deleteflg, createdat, updatedat
 					from board 
-					where rownum <= #{pageNum} * #{amount}
+					where 
+		]]>
+		<include refid="criteria"></include>
+				<![CDATA[	
+					rownum <= #{pageNum} * #{amount}
 			)
 				where rn > (#{pageNum} - 1) * #{amount}
 				order by id DESC
@@ -55,7 +79,12 @@
 	</select>
 	
 	<select id="getTotalCount" resultType="int">
-		select count(*) from board where id > 0 
+		select count(*) from board 
+		where
+		
+		<include refid="criteria"></include>
+		
+		 id > 0 
 	</select>
 
 	<select id="getReceipt" resultType="com.board.app.dto.BoardDto">

@@ -5,7 +5,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <div class="work-area">
 
+
+<script type="text/javascript" src="/resources/js/reply.js"> </script>
 <script type="text/javascript">
+$(document).ready(function() {
+	console.log(replyService);
+});
 
 	window.onpageshow = function(event) {
     	if (event.persisted) {

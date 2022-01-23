@@ -6,6 +6,8 @@
 	${dto}
 
 <script type="text/javascript">
+
+	
 	$(document).ready(
 		function() {
 			var actionForm = $("#actionForm");
@@ -63,7 +65,7 @@ th {
 						<td align="center">${abc.id }</td>
 						<td align="center">
 						<input type="hidden" class="title" name="title" value="${abc.passwd }">
-						<c:if test="${abc.islock == 1}">비밀글</c:if>
+						<c:if test="${abc.islock == 1}"><i class="bi bi-file-earmark-lock2"></i></c:if>
 							<a href="#" onclick="chkIsLock(${abc.islock}, ${abc.id}, this)">${abc.title }</a></td>
 						<td align="center">${abc.name }</td>
 						<td><fmt:formatDate value="${abc.createdat }"
@@ -75,58 +77,79 @@ th {
 	</form>
 
 <!-- 검색기능  -->
-	<div class="container">
-		<div class="row" style="text-align: center">
-			<form method="post" name="search" action="board">
-				<table class="pull-right">
-					<tr>
-						<td><select class="form-control" name="searchField">
-								<option value="0">선택</option>
-								<option value="bbsTitle">제목</option>
-								<option value="userID">작성자</option>
-						</select></td>
-						<td><input type="text" class="form-control"
-							placeholder="검색어 입력" name="searchText" maxlength="100"></td>
-						<td>
-							<button type="submit" class="btn btn-warning">검색</button>
-						</td>
-					</tr>
-
-				</table>
-
-			</form>
+	<div class='row'>
+		<div class="col-lg-12">
+		
+		<form id='searchForm' action="/board/list" method='get'>
+			<table style="margin-left: auto; margin-right:auto";>
+			<tr>
+				<td>
+					<select class="form-control" name="type">		
+						<option value="">-----</option>
+						<option value="T">제목</option>
+						<option value="N">이름</option>
+				</select>
+				</td>
+				
+				<td>
+					<input type='text' placeholder="검색어를 입력해주세요." name='keyword'/>
+					<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'>
+					<input type='hidden' name='amount' value='${pageMaker.cri.amount }'>	
+					<button class='btn btn-outline-danger' ><i class="bi bi-apple"></i>Search</button>
+				</td>
+			</tr>	
+				
+			</table>
+			
+			
+		</form>
+		
+		
 		</div>
 	</div>
+	
 
 
 
 	<!-- 페이징 소스 -->
 	<div id="pagination-box"
 		style="margin-top: 20px; margin-bottom: 100px;">
-		<nav style="vertical-align: middle;"
-			aria-label="Page navigation example">
+		<nav aria-label="Page navigation example">
 			<ul class="pagination justify-content-center">
 				<c:if test="${pageMaker.prev}">
-					<li class="paginate_button previous"><a
-						href="${pageMaker.starPage -1 }">Previous</a></li>
+					<li class="page-item disabled"><a class="page-link"
+						href="${pageMaker.startPage -1 }">Previous</a></li>
 				</c:if>
 
 				<c:forEach var="num" begin="${pageMaker.startPage }"
 					end="${pageMaker.endPage }">
 					<li
-						class="paginate_button ${pageMaker.cri.pageNum == num ? 'active':'' }">
-						<a href="${num}">${num}</a>
+						class="page-item ${pageMaker.cri.pageNum == num ? 'active':'' }">
+						<a class="page-link" href="list?pageNum=${num}&amount=10">${num}</a>
 					</li>
 				</c:forEach>
 
 				<c:if test="${pageMaker.next}">
-					<li class="paginate_button next"><a
+					<li class="page-item"><a class="page-link"
 						href="${pageMaker.endPage + 1 }">Next</a></li>
 				</c:if>
 			</ul>
 		</nav>
 	</div>
 	<!-- 페이징 끝 -->
+	<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item disabled">
+      <a class="page-link">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
 
 	<form id='actionForm' action="/board/list" method='get'>
 		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>

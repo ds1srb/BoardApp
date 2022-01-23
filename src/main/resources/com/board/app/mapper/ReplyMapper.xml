@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.board.app.mapper.ReplyMapper">
+ 	<insert id="insert">
+ 		insert into comment (
+ 		id,
+ 		boardid,
+ 		name,
+ 		contents,
+ 		createdat,
+ 		updatedat
+ 		)
+ 		
+ 		values (
+ 		
+ 		COMMENT_SEQ.NEXTVAL,
+ 		#{boardid},
+ 		#{name},
+ 		#{contents},
+ 		sysdate,
+ 		sysdate
+ 		)
+
+ 	</insert>
+ 
+ 	<select id="read" resultType="com.board.app.dto.ReplyDto">
+ 		select * from comment where id = #{id}
+ 	
+ 	</select>
+ 	
+ 	
+ 	<update id="update">
+ 		update comment set reply =#{reply}, updatedat = sysdate where id=#{id}
+ 	</update>
+ 	
+ 	<select id = "getListWithPaging" resultType="com.board.app.dto.ReplyDto">
+ 		select * from comment where boardid = #{boardid}
+ 			order by id asc
+ 	
+ 	
+ 	</select>
+ 
+ 
+ 
+ 
+ 
+ </mapper>
