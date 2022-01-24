@@ -117,39 +117,27 @@ th {
 		<nav aria-label="Page navigation example">
 			<ul class="pagination justify-content-center">
 				<c:if test="${pageMaker.prev}">
-					<li class="page-item disabled"><a class="page-link"
+					<li class="paginate_button previous"><a
 						href="${pageMaker.startPage -1 }">Previous</a></li>
 				</c:if>
 
 				<c:forEach var="num" begin="${pageMaker.startPage }"
 					end="${pageMaker.endPage }">
 					<li
-						class="page-item ${pageMaker.cri.pageNum == num ? 'active':'' }">
-						<a class="page-link" href="list?pageNum=${num}&amount=10">${num}</a>
+						class="paginate_button ${pageMaker.cri.pageNum == num ? 'active':'' }">
+						<a href="${num}">${num}</a>
 					</li>
 				</c:forEach>
 
 				<c:if test="${pageMaker.next}">
-					<li class="page-item"><a class="page-link"
+					<li class="paginate_button next"><a
 						href="${pageMaker.endPage + 1 }">Next</a></li>
 				</c:if>
 			</ul>
 		</nav>
 	</div>
 	<!-- 페이징 끝 -->
-	<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link">Previous</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
-    </li>
-  </ul>
-</nav>
+	
 
 	<form id='actionForm' action="/board/list" method='get'>
 		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
