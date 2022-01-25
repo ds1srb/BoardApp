@@ -13,7 +13,7 @@ public interface ReplyMapper {
 	
 	public ReplyDto read(int id);
 	
-	public int update(ReplyDto reply);
+	public int update(ReplyDto dto);
 	
 	public List<ReplyDto> getListWithPaging(
 			@Param("cri") Criteria cri,

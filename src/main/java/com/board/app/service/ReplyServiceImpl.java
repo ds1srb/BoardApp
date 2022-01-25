@@ -14,11 +14,22 @@ public class ReplyServiceImpl implements ReplyService {
 
 	@Autowired
 	ReplyMapper mapper;
+	
+
+	@Override
+	public int register(ReplyDto dto) {
+		// TODO Auto-generated method stub
+		return mapper.insert(dto);
+	}
+	
+	
 	@Override
 	public ReplyDto get(int id) {
 		
 		return mapper.read(id);
 	}
+	
+
 
 	@Override
 	public int modify(ReplyDto dto) {
@@ -31,5 +42,9 @@ public class ReplyServiceImpl implements ReplyService {
 		// TODO Auto-generated method stub
 		return mapper.getListWithPaging(cri, boardid);
 	}
+
+
+
+	
 
 }
