@@ -5,5 +5,10 @@
 h5{ text-align : center;}
 
 </style>
-	<h5>Copyright ⓒ 1999 - 2022 Eungkyu. All rights reserved.</h5>
-</footer>
+<!-- <div>
+ <img src="http://www.cosmo-global.com/top/cosmologo23.jpg"style="float:right">
+
+</div> -->
+	<h5>Copyright ⓒ 1998 - 2022 Eungkyu. All rights reserved.</h5>
+	
+	</footer>

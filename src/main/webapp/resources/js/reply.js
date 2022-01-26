@@ -115,5 +115,4 @@ function displayTime(timeValue) {
 		displayTime : displayTime
 		};
    
-
 })();

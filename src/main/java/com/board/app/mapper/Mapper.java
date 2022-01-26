@@ -21,7 +21,7 @@ public interface Mapper {
 	
 	public void insertboard(BoardDto board); 
 
-	public List<BoardDto> findAll();
+	//public List<BoardDto> findAll();
 	
 	public List<BoardDto> getListWithPaging(Criteria cri);
 	

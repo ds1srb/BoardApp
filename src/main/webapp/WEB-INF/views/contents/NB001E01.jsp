@@ -7,12 +7,12 @@
 
 $(document).ready(function(){
 	$("#submit").on("click",function(event){
-		if($("#board_name").val().length==0){alert("이름을 입력하세요"); $("#board_name").focus(); return false;}
+		if($("#board_name").val().length==0){alert("名前を入力して下さい"); $("#board_name").focus(); return false;}
 		/* if($("#board_passwd").val().length==0){alert("비밀번호를 입력하세요"); $("#board_passwd").focus(); return false;} */
-		if($("#board_Title").val().length==0){alert("제목을 입력하세요"); $("#board_Title").focus(); return false;}
-		if($("#summernote").val().length==0){alert("내용을 입력하세요"); $("#summernote").focus(); return false;}
+		if($("#board_Title").val().length==0){alert("タイトルを入力して下さい"); $("#board_Title").focus(); return false;}
+		if($("#summernote").val().length==0){alert("内容して下さい"); $("#summernote").focus(); return false;}
 		
-		alert("등록이완료되었다.");
+		alert("登録が完了しました。");
 		
 	});
 
@@ -26,8 +26,8 @@ $(document).ready(function() {
 		  minHeight: null,             // 최소 높이
 		  maxHeight: null,             // 최대 높이
 		  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
-		  lang: "ko-KR",					// 한글 설정
-		  placeholder: '최대 2000자까지 쓸 수 있습니다'	//placeholder 설정
+		  lang:"jp-JP",					// 일본어 설정
+		  placeholder: '最大1000文字まで書けます。（英語２０００文字）'	//placeholder 설정
         
 	});
 });
@@ -48,34 +48,34 @@ function btn() {
 	alert('등록이 완료되었습니다.');
 }
 </script>
-<h1 class="text-center fs-1" style="margin-top: 20px; margin-bottom:20px;">작성페이지</h1>
+<h1 class="text-center fs-1" style="margin-top: 20px; margin-bottom:20px;"><i class="bi bi-brush-fill"></i></h1>
 	<div class="arearea">
 		<form action="${from }" method="post">	
 			<input type=hidden name=no value="${no}">
-				<table class="table table-bordered">
+				<table class="table table-striped table-hover">
 					<tr>
 						<td class="text-center" width="10%"><strong>名前</strong></td>
 						<td width="40%">
-							<input type=text name=board_name id=board_name placeholder="이름을 입력해 주세요" size=20>
+							<input type=text name=board_name id=board_name placeholder="名前を入力して下さい" size=20>
 						</td>
 						<td class="text-center" width="10%"><strong>Password</strong></td>
 						<td width="40%">
-							<input type=password name=board_passwd id=board_passwd placeholder="비밀번호를 입력해 주세요" size=20>
+							<input type=password name=board_passwd id=board_passwd placeholder="パスワードを入力して下さい" size=20>
 						</td>
 					</tr>
 					<tr>
-						<td class="text-center"><strong>제&nbsp;&nbsp;목</strong></td>
-						<td colspan="3"><input type="text" id="board_Title" name="board_title" placeholder="제목을 입력해 주세요" class="col-sm-12 col-form-label"></td>
+						<td class="text-center"><strong>タイ&nbsp;&nbsp;トル</strong></td>
+						<td colspan="3"><input type="text" id="board_Title" name="board_title" placeholder="タイトルを入力して下さい" class="col-sm-12 col-form-label"></td>
 					</tr>
 					<tr>
 					
-						<td class="text-center align-middle"><strong>내&nbsp;&nbsp;용</strong></td>
+						<td class="text-center align-middle"><strong>内&nbsp;&nbsp;容</strong></td>
 						<td colspan="3"><textarea id="summernote" name="board_contents"></textarea></td>
 					</tr>
 					<tr>
 						<td colspan=4 align="center" >
 							<input type="button" onclick="history.back()" style="width:100pt;" class="btn btn-warning btn-lg" value="戻る"> &emsp;&emsp;
-							<input type="submit" id="submit" style="width:100pt;" class="btn btn-primary btn-lg" value="등록">
+							<input type="submit" id="submit" style="width:100pt;" class="btn btn-primary btn-lg" value="登録">
 						</td>
 					</tr>
 					</table>

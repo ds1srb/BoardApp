@@ -47,13 +47,13 @@ th {
 
 
 
-	<h1 class="text-center fs-1" style="margin-bottom: 30px;">목록페이지</h1>
+	<h1 class="text-center fs-1" style="margin-bottom: 30px;"><i class="bi bi-layout-text-sidebar"></i></h1>
 	<form name="search" action="board" method="GET">
-		<button type="button" class="btn btn-primary"
-			onclick="location.href='/board/create'">글쓰기</button>
+		<button type="button" class="btn btn-outline-primary"
+			onclick="location.href='/board/create'"><i class="bi bi-pencil-fill"></i></button>
 		<div
 			style="margin-top: 20px; margin-bottom: 10px; text-align: center;">
-			<table class="table table-dark table-striped">
+			<table class="table table-striped table-hover">
 				<tr>
 					<th width="10%">番号</th>
 					<th width="60%">タイトル</th>
@@ -65,7 +65,7 @@ th {
 						<td align="center">${abc.id }</td>
 						<td align="center">
 						<input type="hidden" class="title" name="title" value="${abc.passwd }">
-						<c:if test="${abc.islock == 1}"><i class="bi bi-file-earmark-lock2"></i></c:if>
+						<c:if test="${abc.islock == 1}"><i class="bi bi-file-earmark-lock-fill"></i></c:if>
 							<a href="#" onclick="chkIsLock(${abc.islock}, ${abc.id}, this)">${abc.title }</a></td>
 						<td align="center">${abc.name }</td>
 						<td><fmt:formatDate value="${abc.createdat }"
@@ -80,27 +80,40 @@ th {
 	<div class='row'>
 		<div class="col-lg-12">
 		
-		<form id='searchForm' action="/board/list" method='get'>
-			<table style="margin-left: auto; margin-right:auto";>
+		<form id='searchForm' action="/" method='get'>
+			<%-- <table style="margin-left: auto; margin-right:auto">
 			<tr>
 				<td>
 					<select class="form-control" name="type">		
 						<option value="">-----</option>
-						<option value="T">제목</option>
-						<option value="N">이름</option>
-				</select>
+						<option value="T">タイトル</option>
+						<option value="N">名前</option>
+					</select>
 				</td>
 				
 				<td>
-					<input type='text' placeholder="검색어를 입력해주세요." name='keyword'/>
+					<input type='text' placeholder="検索語を入れて下さい" name='keyword'/>
 					<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'>
 					<input type='hidden' name='amount' value='${pageMaker.cri.amount }'>	
-					<button class='btn btn-outline-danger' ><i class="bi bi-apple"></i>Search</button>
+					<button class='btn btn-outline-danger' >Search<i class="bi bi-apple"></i></button>
+				
 				</td>
 			</tr>	
 				
-			</table>
-			
+			</table> --%>
+					<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'>
+					<input type='hidden' name='amount' value='${pageMaker.cri.amount }'>	
+				<div style="width:70%; margin:0 auto;">
+					<div class="input-group mb-3">
+						<select class="form-control" name="type">		
+							<option value="">-----</option>
+							<option value="T">タイトル</option>
+							<option value="N">名前</option>
+						</select>
+			  			<input type="text" class="form-control" placeholder="検索語を入れて下さい" aria-label="Recipient's username" aria-describedby="button-addon2" name='keyword'>
+			  			<button class="btn btn-outline-danger" id="button-addon2">Search<i class="bi bi-apple"></i></button>
+					</div>
+				</div>
 			
 		</form>
 		
@@ -139,7 +152,7 @@ th {
 	<!-- 페이징 끝 -->
 	
 
-	<form id='actionForm' action="/board/list" method='get'>
+	<form id='actionForm' action="/" method='get'>
 		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
 		<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
 	</form>

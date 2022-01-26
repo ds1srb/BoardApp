@@ -8,6 +8,10 @@
 		<put-attribute name="footer" value="/WEB-INF/views/footer/footer.jsp" />
 	</definition>
 	
+	<definition name="/" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views/contents/NB001L01.jsp" />
+	</definition>
+	
 	<definition name="*" extends="base">
 		<put-attribute name="body" value="/WEB-INF/views/contents/{1}.jsp" />
 	</definition>

@@ -8,22 +8,20 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">게시판</a>
+    <a class="navbar-brand" href="/"><i class="bi bi-clipboard"></i></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse" id="navbarNav" style="justify-content: space-around; flex-direction: row">
       <ul class="navbar-nav">
         <li class="nav-item">
-         	<a class="nav-link active" aria-current="page"href="/board/create">글쓰기페이지</a>
+         	<a class="nav-link active" aria-current="page"href="/board/create"><i class="bi bi-brush-fill"></i></a>
         </li>
-        <li class="nav-item">
-         	<a class="nav-link active" aria-current="page"href="/board/list">리스트페이지</a>
-        </li>
+
         
         
          <li class="nav-item">
-         	<a class="nav-link"href="/">戻る</a>
+         	<a class="nav-link"href="/"><i class="bi bi-justify"></i></a>
         </li>
         
       </ul>

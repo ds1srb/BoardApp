@@ -38,7 +38,7 @@
 	</select>
 	
 	<select id="listboard" parameterType="int" resultType="com.board.app.dto.BoardDto">
-		SELECT * from board where id =#{id}  ORDER by id DESC
+		SELECT * from board where id =#{id}  ORDER by id desc
 	</select>
 	
 	<sql id="criteria">
@@ -62,20 +62,17 @@
 	
 	
 	<select id="getListWithPaging" parameterType="com.board.app.dto.Criteria" resultType="com.board.app.dto.BoardDto">
-		<![CDATA[
 			select * from 
-			(
-				select rownum rn, id, title, contents, name, passwd, islock, deleteflg, createdat, updatedat
-					from board 
+			(select /*+INDEX_DESC(board)*/
+				 rownum rn, id, title, contents, name, passwd, islock, deleteflg, createdat, updatedat from board 
 					where 
-		]]>
 		<include refid="criteria"></include>
 				<![CDATA[	
 					rownum <= #{pageNum} * #{amount}
 			)
 				where rn > (#{pageNum} - 1) * #{amount}
-				order by id DESC
 			]]> 
+			order by id desc
 	</select>
 	
 	<select id="getTotalCount" resultType="int">

@@ -33,7 +33,6 @@
         <button id='modalModBtn' type="button" class="btn btn-warning">Modify</button>
         <button id='modalRemoveBtn' type="button" class="btn btn-danger">Remove</button>
         <button id='modalRegisterBtn' type="button" class="btn btn-primary">Register</button>
-        <button id='test' type="button" class="btn btn-primary">Register</button>
         <button id='modalCloseBtn' type="button" class="btn btn-default">Close</button>
       </div>          </div>
           <!-- /.modal-content -->
@@ -91,78 +90,73 @@ var contentsUL = $(".chat");
 		modal.find("button[id !='modalColseBtn']").hide();
 		modalRegisterBtn.show();
 		$(".modal").modal("show");
+	});
 	
-		$("#test").on("click",function(){
-			console.log("asdfasdf");
-		});
-		modalRegisterBtn.on("click", function(e){	//event error
+	$("#test").on("click",function(){
+		console.log("asdfasdf");
+	});
+	modalRegisterBtn.on("click", function(e){	//event error
 
+		modal.modal("hide");
+		
+		var contents = {
+				contents: modalInputContents.val(),
+				name:modalInputName.val(),
+				boardid:boardidValue
+		};
+		console.log(contents);
+		
+		replyService.add(contents, function(result){
+			alert(result);
+			modal.find("input").val("");
 			modal.modal("hide");
 			
-			var contents = {
-					contents: modalInputContents.val(),
-					name:modalInputName.val(),
-					boardid:boardidValue
-			};
-			console.log(contents);
-		
-			replyService.add(contents, function(result){
-				alert(result);
-				modal.find("input").val("");
-				modal.modal("hide");
-				
-				showList(1);
-			});
+			showList(1);
 		});
-	
 	});
 });
-		
+
 		
 
 </script>
 
-${id}
-${applicantIn.islock}
-		<table class="table table-dark table-striped" style="text-align: center; border: 1px solid #dddddd" >
+<%-- ${id}
+${applicantIn.islock} --%>
+		<table class="table table-striped table-hover" style="text-align: center; border: 1px solid #dddddd" >
 			<thead>
 				<tr>
 					
-					<th colspan="3" style="text-align: center;">게시판글보기</th>
+					<th colspan="3" style="text-align: center;"><i class="bi bi-file-earmark-text-fill"></i></th>
 				</tr>
 			<thead>
 			<tbody>	
 					<tr>
-						<td style="width:20%;">글 제목</td>
+						<td style="width:20%;">タイトル</td>
 						<td colspan="3"><strong>${applicantIn.title }</strong></td>
 					</tr>
 					<tr>
-						<td style="width:20%;">작성자</td>	
+						<td style="width:20%;">名前</td>	
 						<td colspan="3">${applicantIn.name }</td>
 					</tr>
 					<tr>
-						<td style="width:20%;">작성일자</td>	
+						<td style="width:20%;">作成日</td>	
 						<td colspan="3"><fmt:formatDate value="${applicantIn.createdat }" pattern="yyyy-MM-dd kk:mm"></fmt:formatDate></td>
 					</tr>
 					<tr>
-						<td>내용</td>	
+						<td>内容</td>	
 						<td colspan="2" style="height: 200px; text-align: left; word-break:break-all">${applicantIn.contents }</td>
 					</tr>
 			</tbody>	
 		</table>
-	<a href="list" class="btn btn-danger">목록</a>
-	
-	<a href="/board/update?id=${id}" role="button" class="btn btn-warning">수정</a>
-	
+			<a href="list" class="btn btn-danger">リスト</a>
+			<a href="/board/update?id=${id}" role="button" class="btn btn-warning">アップデート</a>
+			<button id="addReplyBtn" class='btn btn-primary pull-right'>コメント</button>
 <div class='row'>
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<i class="fa fa-comments fa-fw"></i> 댓글목록
-				<button id="addReplyBtn" class='btn btn-primary pull-right'>댓글달기</button>
+				<i class="fa fa-comments fa-fw">コメント目録</i> 
 			</div>
-			
-			
 				<div class="panel-body">
 					<ul class="chat">
 					<li class="left clearfix" data-id='12'>
@@ -183,4 +177,4 @@ ${applicantIn.islock}
 	
 </div>
 		
-	</div>
+

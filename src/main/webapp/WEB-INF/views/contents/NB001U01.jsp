@@ -9,7 +9,7 @@
 $(document).ready(function(){
 	$("#submit").on("click",function(event){
 		
-		alert("등록이완료되었다.");
+		alert("アップデートが完了しました。");
 		
 	});
 
@@ -42,16 +42,16 @@ $(document).ready(function() {
 %>
 <script>
 function btn() {
-	alert('등록이 완료되었습니다.');
+	alert('アップデートが完了しました。');
 }
 </script>
-<h1 class="text-center fs-1" style="margin-top: 20px; margin-bottom:20px;">수정페이지</h1>
+<h1 class="text-center fs-1" style="margin-top: 20px; margin-bottom:20px;">アップデート</h1>
 	<div class="arearea">
 		<form action="${from }" method="post">	
 			<input type=hidden name=id value="${id}">
 			<input type='hidden' name='pageNum' value='${cri.pageNum }'>
 			<input type='hidden' name='amount' value='${cri.amount }'>
-				<table class="table table-bordered">
+				<table class="table table-striped table-hover">
 					<tr>
 						<td class="text-center" width="10%"><strong>名前</strong></td>
 						<td width="40%">
@@ -64,19 +64,19 @@ function btn() {
 					</tr>
 					<tr>
 						
-						<td class="text-center"><strong>제&nbsp;&nbsp;목</strong></td>
+						<td class="text-center"><strong>タイ&nbsp;&nbsp;トル</strong></td>
 						<td colspan="3"><input type="text" name="board_title" value="${update.title}" class="col-sm-12 col-form-label"></td>
 						
 					</tr>
 					<tr>
 					
-						<td class="text-center align-middle"><strong>내&nbsp;&nbsp;용</strong></td>
+						<td class="text-center align-middle"><strong>内&nbsp;&nbsp;容</strong></td>
 						<td colspan="3"><textarea id="summernote" name="board_contents">${update.contents}</textarea></td>
 					</tr>
 					<tr>
-						<td colspan=4 align="center" >
+						<td colspan="4" align="center" >
 							<input type="button" onclick="history.back()" style="width:100pt;" class="btn btn-warning btn-lg" value="戻る"> &emsp;&emsp;
-							<input type="submit" id="submit" style="width:100pt;" class="btn btn-primary btn-lg" value="등록">
+							<input type="submit" id="submit" style="width:100pt;" class="btn btn-primary btn-lg" value="アップデート">
 						</td>
 					</tr>
 					</table>

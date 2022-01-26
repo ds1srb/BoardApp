@@ -33,7 +33,7 @@ public class BoardController {
 		model.addAttribute("applicantIn", applicantIn);
 		model.addAttribute("id", id);
 		model.addAttribute("Warning", Warning);
-		logger.info("비밀번호입력해주세요");
+		logger.info("暗証番号を入力して下さい");
 		return "Password";
 	}
 	
@@ -47,7 +47,7 @@ public class BoardController {
 		if(service.getPasswd(id, passwd).size() >0) {
 			str = "redirect:/board/detail?id=" + id;
 		}else {
-			String WW = "틀렸어요";
+			String WW = "間違えました。もう一度入力してください。";
 			model.addAttribute("Warning", WW );
 			str = "redirect:/board/Password?id=" + id;
 		}
@@ -97,7 +97,7 @@ public class BoardController {
 		dto.setDeleteflg(board_Deleteflg);
 		
 		int result = service.updateReceipt(dto);
-		return "redirect:/board/list";
+		return "redirect:/";
 	}
 	
 	
@@ -116,7 +116,7 @@ public class BoardController {
 	}	
 	
 	
-	@RequestMapping(value = "/board/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String receipt(Model model, Criteria cri) {
 		/*
 		 * List<BoardDto> list = service.findAll(); model.addAttribute("test", list);
@@ -128,7 +128,7 @@ public class BoardController {
 		int total = service.getTotal(cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		logger.info("목록이다");
-		return "NB001L01";
+		return "/";
 		
 	}
 	
@@ -173,7 +173,7 @@ public class BoardController {
 			
 			service.insertboard(dto);
 			logger.info("작성한다");
-			return "redirect:/board/list";
+			return "redirect:/";
 	}
 			
 			
